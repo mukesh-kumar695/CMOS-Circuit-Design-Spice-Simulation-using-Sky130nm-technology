@@ -67,9 +67,6 @@
     - [L4 Conclusion](#L4-Conclusion)
     - [L5 Sky130 device variations labs](#L5-Sky130-device-variations-labs)
 
-# NgspiceSky130-Day1-Basics of NMOS Drain Current(Id) vs Drain-to-source Voltage(Vds)
-
-## Introduction to Circuit Design and Spice Simulations
 
 
 
