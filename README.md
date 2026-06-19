@@ -75,8 +75,12 @@
 
 
 
+# Day 1 - NMOS Characteristics and SPICE Basics
 
+##  Circuit Design and Simulation
 
+###  How does SPICE help?
+SPICE simulations characterize CMOS circuits by extracting delay, slew, and power parameters used in timing analysis, clock tree synthesis, and cell library generation. These simulations generate delay lookup tables based on input slew and output load, enabling accurate physical design and STA.
 
 
 
