@@ -440,6 +440,10 @@ To analyze MOSFET behavior, we sweep Vgs and Vds.
 
 
 
+**Output:**
+* Id vs Vds curves for different Vg
+
+![](day_1_output.jpg)
 
 
 
