@@ -780,7 +780,6 @@ Therefore ,the load curve for PMOS is
 
 ![](s25.jpg)
 
-
 #### Step 3
 Now Let us try to get the "load curve" for NMOS transistor in terms of Vin and Vout
 
