@@ -2,97 +2,340 @@
 # CMOS-Circuit-Design-Spice-Simulation-using-Sky130nm-technology
 
 # Table of Contents
+* ###  [Day 1 - Basics of NMOS Drain Current ($I_d$) vs Drain-to-source Voltage ($V_{ds}$)](#day1-basics-of-nmos-drain-currentid-vs-drain-to-source-voltagevds)
+  * #### [Introduction to Circuit Design and Spice Simulations](#introduction-to-circuit-design-and-spice-simulations)
+-   * []  [L1 Why do we need SPICE simulations?](#l1-why-do-we-need-spice-simulations)
+    * [ ] [L2 Introduction to basic element in circuit design-NMOS](#l2-introduction-to-basic-element-in-circuit-design-nmos)
+    * [ ] [L3 Strong inversion and threshold voltage](#l3-strong-inversion-and-threshold-voltage)
+    * [ ] [L4 Threshold voltage with positive substrate potential](#l4-threshold-voltage-with-positive-substrate-potential)
+  * #### [NMOS Resistive Region and Saturation Region of Operation](#nmos-resistive-region-and-saturation-region-of-operation)
+    * [ ] [L1 Resistive region of operation with small drain-source voltage](#l1-resistive-region-of-operation-with-small-drain-source-voltage)
+    * [ ] [L2 Drift current theory](#l2-drift-current-theory)
+    * [ ] [L3 Drain current model for Linear region of operation](#l3-drain-current-model-for-linear-region-of-operation)
+    * [ ] [L4 SPICE conclusion to resistive operation](#l4-spice-conclusion-to-resistive-operation)
+    * [ ] [L5 Pinch-off region condition](#l5-pinch-off-region-condition)
+    * [ ] [L6 Drain current model for saturation region of operation](#l6-drain-current-model-for-saturation-region-of-operation)
+  * #### [Introduction to SPICE](#introduction-to-spice)
+    * [ ] [L1 Basic SPICE setup](#l1-basic-spice-setup)
+    * [ ] [L2 Circuit description in SPICE syntax](#l2-circuit-description-in-spice-syntax)
+    * [ ] [L3 Define Technology parameters](#l3-define-technology-parameters)
+    * [ ] [L4 First SPICE simulation](#l4-first-spice-simulation)
+    * [ ] [L5 SPICE lab with Sky130 models](#l5-spice-lab-with-sky130-models)
 
-- [Day 1 - NMOS Characteristics and SPICE Basics](#day-1---nmos-characteristics-and-spice-basics)
-  - [Circuit Design and Simulation](#circuit-design-and-simulation)
-    - [L1 How does SPICE help?](#l1-how-does-spice-help)
-    - [L2 What is NMOS?](#l2-what-is-nmos)
-    - [L3 What is strong inversion?](#l3-what-is-strong-inversion)
-    - [L4 How does body bias affect Vth?](#l4-how-does-body-bias-affect-vth)
-  - [NMOS Operating Regions](#nmos-operating-regions)
-    - [L1 What is the linear region?](#l1-what-is-the-linear-region)
-    - [L2 What is drift current?](#l2-what-is-drift-current)
-    - [L3 How is drain current modeled?](#l3-how-is-drain-current-modeled)
-    - [L4 What do simulations reveal?](#l4-what-do-simulations-reveal)
-    - [L5 When does pinch-off occur?](#l5-when-does-pinch-off-occur)
-    - [L6 What defines saturation current?](#l6-what-defines-saturation-current)
-  - [Introduction to SPICE](#introduction-to-spice)
-    - [L1 What is a SPICE setup?](#l1-what-is-a-spice-setup)
-    - [L2 How is a netlist written?](#l2-how-is-a-netlist-written)
-    - [L3 How are model parameters defined?](#l3-how-are-model-parameters-defined)
-    - [L4 How is the first simulation performed?](#l4-how-is-the-first-simulation-performed)
-    - [L5 How are Sky130 models used?](#l5-how-are-sky130-models-used)
+-* ###  [Day 2 - Velocity Saturation and Basics of CMOS Inverter VTC](#day2-velocity-saturation-and-basics-of-cmos-inverter-vtc)
+  * #### [SPICE Simulation for Lower Nodes and Velocity Saturation Effect](#spice-simulation-for-lower-nodes-and-velocity-saturation-effect)
+    * [ ] [L1 SPICE simulation for lower nodes](#l1-spice-simulation-for-lower-nodes)
+    * [ ] [L2 Drain current vs gate voltage for long and short channel device](#l2-drain-current-vs-gate-voltage-for-long-and-short-channel-device)
+    * [ ] [L3 Velocity saturation at lower and higher electric fields](#l3-velocity-saturation-at-lower-and-higher-electric-fields)
+    * [ ] [L4 Velocity saturation drain current model](#l4-velocity-saturation-drain-current-model)
+    * [ ] [L5 Labs Sky130 Id-Vgs](#l5-labs-sky130-id-vgs)
+    * [ ] [L6 Labs Sky130 Vt](#l6-labs-sky130-vt)
+  * #### [CMOS Voltage Transfer Characteristics (VTC)](#cmos-voltage-transfer-characteristics-vtc)
+    * [ ] [L1 MOSFET as a switch](#l1-mosfet-as-a-switch)
+    * [ ] [L2 Introduction to standard MOS voltage current parameters](#l2-introduction-to-standard-mos-voltage-current-parameters)
+    * [ ] [L3 PMOS/NMOS drain current vs drain voltage](#l3-pmosnmos-drain-current-vs-drain-voltage)
+    * [ ] [L4 Step 1 - Convert PMOS gate-source-voltage to Vin](#l4-step1--convert-pmos-gate-source-voltage-to-vin)
+    * [ ] [L5 Step 2 & Step 3 - Convert PMOS and NMOS drain-source-voltage to Vout](#l5-step2--step3--convert-pmos-and-nmos-drain-source-voltage-to-vout)
+    * [ ] [L6 Step 4 - Merge PMOS-NMOS load curves and plot VTC](#l6-step4--merge-pmos-nmos-load-curves-and-plot-vtc)
 
-- [Day 2 - Velocity Saturation and CMOS VTC](#day-2---velocity-saturation-and-cmos-vtc)
-  - [Device Scaling Effects](#device-scaling-effects)
-    - [L1 What are lower technology nodes?](#l1-what-are-lower-technology-nodes)
-    - [L2 How do Id-Vgs curves vary?](#l2-how-do-id-vgs-curves-vary)
-    - [L3 What causes velocity saturation?](#l3-what-causes-velocity-saturation)
-    - [L4 How does velocity affect current?](#l4-how-does-velocity-affect-current)
-    - [L5 How is Id-Vgs analyzed?](#l5-how-is-id-vgs-analyzed)
-    - [L6 How is threshold voltage extracted?](#l6-how-is-threshold-voltage-extracted)
-  - [CMOS Voltage Transfer Characteristics](#cmos-voltage-transfer-characteristics)
-    - [L1 Why use MOSFETs as switches?](#l1-why-use-mosfets-as-switches)
-    - [L2 What are CMOS parameters?](#l2-what-are-cmos-parameters)
-    - [L3 How do PMOS and NMOS characteristics compare?](#l3-how-do-pmos-and-nmos-characteristics-compare)
-    - [L4 How is Vin obtained?](#l4-how-is-vin-obtained)
-    - [L5 How is Vout determined?](#l5-how-is-vout-determined)
-    - [L6 How is the VTC plotted?](#l6-how-is-the-vtc-plotted)
+* ###  [Day 3 - CMOS Switching Threshold and Dynamic Simulations](#day3-cmos-switching-threshold-and-dynamic-simulations)
+  * #### [Voltage Transfer Characteristics - SPICE Simulations](#voltage-transfer-characteristics-spice-simulations)
+    * [ ] [L1 SPICE deck creation for CMOS inverter](#l1-spice-deck-creation-for-cmos-inverter)
+    * [ ] [L2 SPICE simulation for CMOS inverter](#l2-spice-simulation-for-cmos-inverter)
+    * [ ] [L3 Labs Sky130 SPICE simulation for CMOS](#l3-labs-sky130-spice-simulation-for-cmos)
+  * #### [Static Behaviour Evaluation - CMOS Inverter Robustness - Switching Threshold](#static-behaviour-evaluation-cmos-inverter-robustness-switching-threshold)
+    * [ ] [L1 Switching Threshold, Vm](#l1-switching-threshold-vm)
+    * [ ] [L2 Analytical expression of Vm as a function of (W/L)n and (W/L)p](#l2-analytical-expression-of-vm-as-a-function-of-wln-and-wlp)
+    * [ ] [L3 Analytical expression of (W/L)n and (W/L)p as a function of Vm](#l3-analytical-expression-of-wln-and-wlp-as-a-function-of-vm)
+    * [ ] [L4 Static and Dynamic simulation of CMOS inverter](#l4-static-and-dynamic-simulation-of-cmos-inverter)
+    * [ ] [L5 Static and Dynamic simulation of CMOS inverter with increased PMOS width](#l5-static-and-dynamic-simulation-of-cmos-inverter-with-increased-pmos-width)
+    * [ ] [L6 Applications of CMOS inverter in clock network and STA](#l6-applications-of-cmos-inverter-in-clock-network-and-sta)
 
-- [Day 3 - CMOS Switching and Dynamic Analysis](#day-3---cmos-switching-and-dynamic-analysis)
-  - [Inverter Simulations](#inverter-simulations)
-    - [L1 How is a SPICE deck created?](#l1-how-is-a-spice-deck-created)
-    - [L2 How is CMOS behavior simulated?](#l2-how-is-cmos-behavior-simulated)
-    - [L3 How are Sky130 models applied?](#l3-how-are-sky130-models-applied)
-  - [Switching Threshold Analysis](#switching-threshold-analysis)
-    - [L1 What is switching voltage Vm?](#l1-what-is-switching-voltage-vm)
-    - [L2 How does transistor sizing affect Vm?](#l2-how-does-transistor-sizing-affect-vm)
-    - [L3 How are W/L ratios selected?](#l3-how-are-wl-ratios-selected)
-    - [L4 How are static and transient responses studied?](#l4-how-are-static-and-transient-responses-studied)
-    - [L5 What happens with larger PMOS width?](#l5-what-happens-with-larger-pmos-width)
-    - [L6 Why are CMOS inverters important?](#l6-why-are-cmos-inverters-important)
+* ###  [Day 4 - CMOS Noise Margin Robustness Evaluation](#day4-cmos-noise-margin-robustness-evaluation)
+  * #### [Static Behaviour Evaluation - CMOS Inverter Robustness - Noise Margin](#static-behaviour-evaluation-cmos-inverter-robustness-noise-margin)
+    * [ ] [L1 Introduction to Noise Margin](#l1-introduction-to-noise-margin)
+    * [ ] [L2 Noise Margin voltage parameters](#l2-noise-margin-voltage-paramters)
+    * [ ] [L3 Noise margin equation and summary](#l3-noise-margin-equation-and-summary)
+    * [ ] [L4 Noise margin variation with respect to PMOS width](#l4-noise-margin-variation-with-respect-to-pmos-width)
+    * [ ] [L5 Sky130 Noise margin labs](#l5-sky130-noise-margin-labs)
 
-- [Day 4 - Noise Margin Evaluation](#day-4---noise-margin-evaluation)
-  - [Noise Margin Analysis](#noise-margin-analysis)
-    - [L1 Why is noise margin important?](#l1-why-is-noise-margin-important)
-    - [L2 What are noise margin voltages?](#l2-what-are-noise-margin-voltages)
-    - [L3 How is noise margin calculated?](#l3-how-is-noise-margin-calculated)
-    - [L4 How does PMOS width influence noise margin?](#l4-how-does-pmos-width-influence-noise-margin)
-    - [L5 How are noise margins verified?](#l5-how-are-noise-margins-verified)
+* ###  [Day 5 - CMOS Power Supply and Device Variation Robustness Evaluation](#day5-cmos-power-supply-and-device-variation-robustness-evaluation)
+  * #### [Static Behaviour Evaluation - CMOS Inverter Robustness - Power Supply Variation](#static-behaviour-evaluation-cmos-inverter-robustness-power-supply-variation)
+    * [ ] [L1 Smart SPICE simulations for power supply variations](#l1-smart-spice-simulations-for-power-supply-variations)
+    * [ ] [L2 Advantages and disadvantages using low supply voltage](#l2-advantages-and-disadvantages-using-low-supply-voltage)
+    * [ ] [L3 Sky130 Supply variation Labs](#l3-sky130-supply-variation-labs)
+  * #### [Static Behaviour Evaluation - CMOS Inverter Robustness - Device Variation](#static-behaviour-evaluation-cmos-inverter-robustness-device-variation)
+    * [ ] [L1 Sources of variation - Etching process](#l1-sources-of-variation---etching-process)
+    * [ ] [L2 Sources of variation - Oxide thickness](#l2-sources-of-variation---oxide-thickness)
+    * [ ] [L3 Smart SPICE simulation for device variations](#l3-smart-spice-simulation-for-device-variations)
+    * [ ] [L4 Conclusion](#l4-conclusion)
+    * [ ] [L5 Sky130 device variations labs](#l5-sky130-device-variations-labs)
 
-- [Day 5 - Supply and Process Variations](#day-5---supply-and-process-variations)
-  - [Supply Voltage Effects](#supply-voltage-effects)
-    - [L1 How are supply variations simulated?](#l1-how-are-supply-variations-simulated)
-    - [L2 What are low-voltage tradeoffs?](#l2-what-are-low-voltage-tradeoffs)
-    - [L3 How are supply tests performed?](#l3-how-are-supply-tests-performed)
-  - [Device Variations](#device-variations)
-    - [L1 What causes process variations?](#l1-what-causes-process-variations)
-    - [L2 How does etching affect devices?](#l2-how-does-etching-affect-devices)
-    - [L3 Why does oxide thickness matter?](#l3-why-does-oxide-thickness-matter)
-    - [L4 How are variations simulated?](#l4-how-are-variations-simulated)
-    - [L5 What conclusions are obtained?](#l5-what-conclusions-are-obtained)
-    - [L6 How are Sky130 variation labs conducted?](#l6-how-are-sky130-variation-labs-conducted)
+# **Day 1 - Basics of NMOS Drain current (Id) vs Drain-to-source Voltage (Vds)**
 
+## Introduction to Circuit Design and SPICE simulations
 
+### L1 Why do we need SPICE simulations?
 
-# Day 1 - NMOS Characteristics and SPICE Basics
-
-##  Circuit Design and Simulation
-
-###  How does SPICE help?
-SPICE simulations characterize CMOS circuits by extracting delay, slew, and power parameters used in timing analysis, clock tree synthesis, and cell library generation. These simulations generate delay lookup tables based on input slew and output load, enabling accurate physical design and STA.
-
+ A CMOS circuit design has both PMOS and NMOS transistors are connected together in a specific different fashion to form logic gates such as NAND, NOR, AND, OR, etc. These basic gates are the building blocks of all digital circuits.A standard CMOS inverter is built using a PMOS connected to $V_{DD}$ and an NMOS connected to $V_{SS}$ driving a load capacitance ($C_L$).
+ 
 ![Inverter Circuit](CMOS-1(30775193327552).jpg)
 
 The above inverter circuit has certain electrical characteristics.To understand its behaviour ,we perform SPICE simulations which help us analyze important parameters such as delay,switching behavior,and performance.Based on these results,we can determine the proper  W/L (width /Length) ratio of the transistors .
 
+### VTC Circuit and Waveform Plot
+![CMOS Inverter VTC Characteristics](CMOS-2(30775566694972).jpg)
+
+* **Voltage Transfer Characteristics (VTC):** By plotting $V_{out}$ against $V_{in}$, we observe how the circuit switches b/w pmos and nmos. 
+* **Operating Regions:**
+  - When $V_{in} = 0V$, PMOS is in **Linear** and NMOS is **Off** ($V_{out} = V_{DD}=2$).
+  - As $V_{in}$ reaches the center threshold ($V_{in} = 1V$), both transistors enter the **Saturation** region simultaneously.
+  - When $V_{in} = 2V$, PMOS is **Off** and NMOS operates in the **Linear** region ($V_{out} = 0V$).
 
 
 
+### Why do we need SPICE?
+
+ Clock Tree Synthesis (CTS), crosstalk, and timing analysis are completely dependent on 
+SPICE (Simulation Program with Integrated Circuit Emphasis).Without SPICE, it would not be possible to calculate delays, and without delay information, 
+physical design and timing verification would not be meaningful.
+
+![Clock Network](CMOS-4(30775650902025).jpg)
+
+ Suppose we perform CTS on a circuit using buffers that are connected with different capacitive loads at their outputs.
+By performing SPICE simulation ,we get a **Delay Table** for these buffer cells.
+
+* **Buffer Trees:** Buffering is used across multiple levels (Level 1, Level 2) to maintain a clean clock signal and balance capacitive loads.
+* **Delay Tables (Look-up Tables):** In Static Timing Analysis (STA), circuit delays are calculated dynamically based on two key parameters:
+  1. **Input Slew:** The transition speed of the incoming signal.
+  2. **Output Load:** The total capacitance ($fF$) the node needs to drive.
+
+By mapping the input slew (e.g., $40ps$, $60ps$) against output load (e.g., $30fF$, $50fF$) in the lookup matrices, we can determine the precise delay value at their intersection point.
+This delay tables for the level 1 and level 2 buffers is a direct result of transistor-level circuit design and SPICE simulation.
+
+ ![Delay Table](CMOS-5(30775710287972).jpg)
+![](CMOS-6(30775811277372).jpg)
+ 
+Therefore, SPICE plays a fundamental role in CMOS circuit design, as it allows us to characterize and
+evaluate circuit performance accurately before implementation.
+
+ ### L2 Introduction to basic element in circuit design-NMOS
+An NMOS is a **4-terminal device** composed of a Gate (G), Source (S), Drain (D), and Body/Substrate (B) built over a P-substrate with $n^+$ diffusion regions(source and drain).
+
+Above the substrate, there is a thin oxide layer, and on top of it a metal layer is deposited, which acts as the Gate terminal.
+![]((30775901979921).jpg)
+
+#### Threshold Voltage:
+Threshold voltage ($Vt$) is a very important parameter in MOSFET operation, all the characteristics of a device depends on this value.
+
+Initially,
+
+**At $V_{gs} = 0V$:**
+*  Means source,drain and body terminals are grounded.
+*  P-substrate and n+ doped regions act as reverse-biased PN junction diode and as there is no potential so there is a high resistance. **No channel formation** is there.The device remains **Off**
+
+![](CMOS-10(30776008616005).jpg)
+  
+**Applying $+ve$ $V_{gs}>0$:**
+* Now positive charge on the gate repels holes or positive charge in substrate and starts attracting negative charges (electrons) below the gate oxide layer in the substrate.
+* This is beginning of the channel formation
+
+![](CMOS-11(30776084500038).jpg)
+![](CMOS-12(30776129719787).jpg)
+
+### L3 Strong inversion and threshold voltage
+Due to the accumulation of negative charges,there will be formation of Depletion Region, depleting of substrates majority carriers i.e positive carriers here .
+  The further increase in the gate voltage $V_{gs}$ results
+  * More positive carriers are repelled
+  * Increase of depletion region width
+
+![](CMOS-12(30776129719787).jpg)
+ 
+  * **Inversion Layer:** At some point, the semiconductor surface completely converts into an **n-type material** from p-type,this process is called **Strong or Surface inversion**.
+  * The gate voltage at which the strong inversion happens is called the **Threshold Voltage**
+
+![](CMOS-13(30776190348334).jpg)
+
+What will happen if we further increase Vgs>Vt?
+* As there are no more negative charges in the substrate that will be attracted towards the positive Vgs, The negative charges from n+ region will get attracted opening a conducting channel for current to flow from drain to source.
+* However,since there is no drain voltage,the current cannot flow from source to drain.
+
+![](CMOS-14(30776279997966).jpg)
+
+Now let us observe what happens when we change the **body (substrate) potential**.
+
+The depletion region beteween the source and body increases due to the reverse bias at source terminal
+
+![](CMOS-15(30776344977812).jpg)
+
+### L4 Threshold voltage with positive substrate potential
+If we increase the Vgs,depletion region wil increase in both the cases. But in the second case as the +ve Vsb pulls few charges from channel will be pulled towards the source.
+* Results in slower inversion
+* Increases the value of threshold potential due to +ve Vsb
+
+![](CMOS-16(30776429513540).jpg)
+
+![](CMOS-17(30776499522357).jpg)
+
+![](CMOS-18(30776561651865).jpg)
 
 
+The relation between threshold voltage and substrate bias is given by parameters such as Gamma (γ), which are obtained from the fabrication process.
 
+![](CMOS-19(30776633170989).jpg)
 
+* **Conclusion(Body Effect):** When an additional reverse bias voltage ($V_{sb}$) is applied between the source and the body substrate, the depletion layer width broadens near the source, which directly increases the device's threshold voltage ($V_{th}$).
+
+##  NMOS resistive region and saturation region of operation
+
+## L1 Resistive region of operation with small drain-source voltage
+In previous lectures, we have studied about the cut-off region. Now, we will study **the Resistive or Linear** region by applying a small drain-to-source voltage (Vds).
+
+As the gate voltage (Vgs) increases:
+
+* The width of channel increases
+* More charge carriers are available for Conduction Channel Formation
+
+![](CMOS-21(30776790474539).jpg)
+
+![](CMOS-22(30776846132191).jpg)
+
+ The induced charge in the channel is proportional to:
+
+**(Vgs - Vt)**
+
+Now, let us Assume:
+
+Vds = 0.05V
+
+Vt = 0.45V
+
+Vgs is slightly greater than Vt and small initially 
+
+![](CMOS-23(30776913061288).jpg)
+
+Since the source is grounded and drain is at some potential there will be formation of voltage gradient along the channel
+
+The Effective Channel Width is slightly smaller than the actual channel width due to some fabrication factors
+
+![](CMOS-24(30776987423290).jpg)
+
+ Here
+ * y axis → the width of transistor
+ * x axis →  voltage across the channel.
+On applying Vds, every point on x axis will vary w.r.t to Vgs-V(x), this will decide the current equation.
+
+### L2 Drift current theory
+We know that the effective channel voltage (Veff) will vary w.r.t x, 
+sky-2(386973605301613).jpg)
+Example:
+* At x = 0 → Vgs - V(x) = 1V
+* At x = Vds → Vgs - V(x) = 0.95V
+
+![](sky-3(386973625413597).jpg)
+
+The induced charge equation is proportional to the effective channel voltage and depends on the position x
+
+**The types of current:**
+
+* Drift current
+* Diffusion current
+Because of the potential difference across the channel there exists a drift current
+
+Here, drift current dominates because of the electric field.
+
+![](sky-4(386973653148953).jpg)
+
+To calculate drain current, we consider the top view of the transistor.
+
+![](sky-5(386973679111348).jpg)
+
+ ### L3 Drain current model for linear region of operation
+Since there is a voltage variation along the channel which results in variation in carrier velocity.
+
+Velocity depends on the following factors:
+* Mobility (μ)
+* Electric field (E)
+
+![](sky-7(386973715675750).jpg)
+
+By integrating the above equation where,
+* limits of dV will be from 0 to Vds.
+* limits of dx will be from 0 to L.
+
+![](sky-8(386973733585404).jpg)
+
+![](sky-9(386973753458695).jpg)
+
+Technology parameters:
+
+* Oxide Capacitance (Cox)
+* Width and Length (W/L) ratio
+* Mobility (μn)
+* Threshold voltage (Vt)
+These parametes are helpful in SPICE simulations to find out the characteristics.
+
+ ![](sky-10(386973772798949).jpg)
+
+ But, here we cannot say that it is in Linear region, since the Drain current is the quadratic function of Vds. We will calculate the Id with the given values.
+
+ Now we can say that Even though equation is quadratic in Vds, the device behaves as **linear** when:
+
+**(Vgs - Vt) ≥ Vds**
+
+### L4 SPICE conclusion to resistive operation
+To analyze the impact of Vgs and Vds on the drain current,we will consider different values of Vgs and Vds as shown
+* Sweep Vgs
+* Sweep Vds
+Condition for linear region:
+
+(Vgs - Vt) > Vds
+
+![](sky-11(386973790176363).jpg)
+
+![](sky-12(386973828538815).jpg)
+
+But calculating Id for different values of Vgs and sweeping Vds until (Vgs-Vt) at every value is complex
+So,to calculate Id for different values:
+
+We will use **SPICE simulation** here.
+
+### L5 Pinch-off region condition
+When Vds exceeds the value (Vgs-Vt) the region of operation is called "Saturation Region". We know the channel voltage is Vgs-Vds. Now, we will increase the Vds.
+
+* When Vgs-Vds > Vt, there will be a conducting channel.
+
+![](sky-17(386973910069199).jpg)
+  
+* When Vgs-Vds = Vt, At drain side,  Inversion has just happened as it is equal to Vt, so channel will start disappearing at drain side.This is the beginnig of the **Pinch-off**
+
+![](sky-20(386973965146073).jpg)
+
+![](sky-23(386974024666750).jpg)
+
+![](sky-25(386974063189743).jpg)
+
+* When Vgs-Vds < Vt, the channel has disappeared at drain side.
+
+![](sky-24(386974047396548).jpg)
+
+This region is called as "Saturation region".
+
+### L6 Drain current model for saturation region of operation
+At saturation region, the channel voltage is constant i.e 'Vgs-Vt', and the drain current will not depend on Vds.
+To get drain current equation in saturation region we will replace Vds as Vgs-Vt.
+
+![](x21.png)
+
+According to the equation, the mosfet acts as perfect current source. But this is not true.
+* we can see that increasing Vds also increases the depletion region at the Drain which reduces the effective channel length
+* This causes slight increase in current (Resembles slight dependence of Vgs over Id )
+
+![](x22.png)
+
+![](/x23.png)
+
+This effect is called as **Channel Length Modulation**
 
 
 
