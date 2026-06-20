@@ -1257,6 +1257,189 @@ We get
 
 
 
+# Day5-CMOS power supply and device variation robustness evaluation
+
+## Static behaviour evaluation-CMOS inverter robustness-Power supply variation
+
+### L1 Smart SPICE simulations for power supply variations
+
+Power Supply Scaling is also tells about the robustness of an CMOS inverter.
+
+When gate length scales reduced:
+
+* Supply voltage (VDD) is reduced
+* Power consumption reduces
+* But circuit performance sholud not change
+
+Let us observe this Power supply scaling by following simulations
+
+![](images/y1.jpg)
+
+Let us check whether CMOS inverter characteristics remain stable under different VDD values.
+
+![](images/y2.jpg)
+
+![](images/y3.jpg)
+
+We can see that as VDD decreases,Output swing reduces and Transition becomes slower which reduced the gain
+
+![](images/y5.jpg)
+
+### L2 Advantages and disadvantages using low supply voltage
+
+Let us observe the **Gain factor** for the above waveform
+
+* Gain = Change in output voltage/change in input voltage
+
+     = dVout/dVin
+
+![](images/y8.jpg)
+
+![](images/y9.jpg)
+
+We get
+* For High VDD → Higher gain
+* For Low VDD → Reduced gain
+
+![](images/y11.jpg)
+
+Energy efficiency is improved
+
+Power Consumpution has decreased with the value of VDD and the disadvantages of low supply voltage Due to low supply voltage, the charging and discharging of load capacitor becomes very slow, due to this the Both rise delay and fall delay will increase and lead to a performance impact.
+
+![](images/y13.jpg)
+
+![](images/y14.jpg)
+
+![](images/y15.jpg)
+
+![](images/y16.jpg)
+
+![](images/y17.jpg)
+
+![](images/y18.jpg)
+
+![](images/y19.jpg)
+
+![](images/y20.jpg)
+
+The advantages and disadvantages are
+
+![](images/y21.jpg)
+
+
+### L3 Sky130 Supply variation Labs
+
+Let us go to the Day 5 supply variation file.
+
+![](images/y22.jpg)
+
+The initial supply voltage is 1.8V and we are reducing it with the step of 0.2V, so there will be 6 iterations.
+
+![](images/y23.jpg)
+
+Run the simulation
+
+![](images/y24.jpg)
+
+![](images/y25.jpg)
+
+Now let us calculate the gain
+
+* Vdd=1.8V
+
+![](images/y25.jpg)
+
+|dy| =| 0.112676 - 1.69014| = 1.577464
+|dx| = |0.976068 - 0.774359| = 0.201709
+
+|Gain| = 7.82
+
+If we do for Vdd=0.8V ,we get |Gain| = 9.38
+
+
+## Static behaviour evaluation-CMOS inverter robustness-Device variation
+### L1 Sources of variation - Etching process
+Let us discuss about the Sources of Variation
+* Etching Process
+* Oxide Thickness
+
+![](images/y27.jpg)
+
+**Etching Process :** In a single inverter layout, we will see the length of gate, the width(common area between polysilicon and diffusion).
+
+There will be a variation in gate length and gate width of CMOS due to the inacuraccies in the Etching Process
+
+![](images/y28.jpg)
+
+In the inverter chain, the variation can vary with different inverter like with respect to the position of inverter as shown in the diagrams.
+
+![](images/y29.jpg)
+
+![](images/y30.jpg)
+
+![](images/y33.jpg)
+
+* Edges - More Variation
+* Center -less Variation
+
+![](images/y35.jpg)
+
+Hence,the change in w and L can change the drain current of CMOS inverter.
+
+
+### L2 Sources of variation - Oxide thickness
+
+**Oxide Thickness :** If we see the cross-sectional area of CMOS inverter, we can observe the oxide under polysilicon gate.During the fabrication oxide thickness may vary.
+
+![](images/y37.jpg)
+
+![](images/y38.jpg)
+
+Observe the ideal thickness and actual thickness.
+
+![](images/y40.jpg)
+
+![](images/y41.jpg)
+
+* **Cox=Eox/Tox**
+* The change in Tox can change the drain current (from equation) which leads to change in characterisitcs of CMOS inverter.
+
+![](images/y43.jpg)
+
+### L3 Smart SPICE simulation for device variations
+
+![](images/y44.jpg)
+
+For device variations, let us simulate two extreme conditions.
+* For strong PMOS and week NMOS : PMOS width is wider and it has least resistance, NMOS has high resistance
+* For weak PMOS and strong PMOS : NMOS width is wider and it has least resistance, PMOS has high resistance
+
+![](images/y45.jpg)
+
+![](images/y46.jpg)
+
+![](images/y47.jpg)
+
+### L4 Conclusion
+
+![](images/y48.jpg)
+
+![](images/y49.jpg)
+
+We can observe that
+
+* Strong PMOS:
+ - Higher pull-up strength
+ - Vm shifts to right
+
+* Strong NMOS:
+  -Higher pull-down strength
+  -Vm shifts to left
+  
+* In both the extreme cases there is a negelible variation, Therefore it behaves as a robust inverter in both the cases.
+
+* It shows that CMOS inverter still maintains its functionality irrespective of power supply device variations
 
 
 
