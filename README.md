@@ -447,7 +447,181 @@ To analyze MOSFET behavior, we sweep Vgs and Vds.
 
 
 
+# Day2-Velocity saturation and basics of CMOS inverter VTC
 
+## SPICE simulation for lower nodes and velocity saturation effect
+
+### L1 SPICE simulation for lower nodes
+
+We have observed the curve for Id vs Vds for different values of Vgs.
+
+![](v2.jpg)
+
+In the above graph:
+
+* Left side of curve (Vds = Vgs − Vt) → Linear region
+* Right side → Saturation region
+* Bottom → Cut-off region (Device OFF)
+  
+This behavior is for long channel devices.
+
+At certain transition point of Vds the region is not completely saturated nor completely linear
+
+This is how the Id equation maps the graphical curves
+
+Now, we take different values of W and L while keeping W/L constant. Ideally, we expect Id should remain the same, but practically, it does not obeys.
+
+Below is the SPICE deck where only W and L are changed and everything remians same
+
+![](v3.jpg)
+
+![](v4.jpg)
+
+![](v10.jpg)
+
+
+### L2 Drain current vs gate voltage for long and short channel device
+
+Plot Id at different values of Vgs and Vds
+
+![](v12.jpg)
+
+Let us compare the two simulations.
+
+![](v13.jpg)
+
+
+**Observations :**
+
+* For long channel devices :
+
+   At Vds = 2.5V , Id has quadratic dependency on Vgs 
+
+
+* For short channel devices :
+ 
+   For lower values of Vds,Id shows quadratic behaviour w.r.t Vgs .After certain point Vds=2.5V
+  
+   Id has shown linear behavior due to velocity saturation.
+
+
+For Long Channel Device (L = 1.2µm): 
+
+Now we plot Id vs Vgs graph seeping Vds to 2.5V with a step size of 2.5 i.e Vds=2.5 
+
+This syntax means the left-side parameter is swept/tuned for every value of the right-side parameter.
+
+![](v14.jpg)
+
+
+For short channel device (L = 0.25µm):
+
+![](v24.jpg)
+
+Any Device L<=0.25 is a short channel device
+
+
+### L3 Velocity saturation at lower and higher electric fields
+
+For Short Channel Devices,we will see more of a linear behaviour as the Vgs increases (Id vs Vgs). This is due to velocity saturation effect.
+
+![](v24.jpg)
+
+* Higher values of Vgs - Linear Function of Id
+* Lower values of Vgs - Quadratic Function of Id
+
+Velocity Saturation is one of the Short Channel Effect which becomes one of region for operating the lower nodes 
+
+![](v25.jpg)
+
+![](v26.jpg)
+
+For lower nodes,
+
+We have have 4 regions of operations: 
+* Cut Off
+* Linear
+* Saturation
+* Velocity Saturation
+  
+**Velocity Saturation :**
+
+ We know that velocity and electric field are related to each other 
+ * v=uE
+where,
+* v is velocity
+* E is electric field
+* u is mobility.
+
+Velocity increases linearly with electric field over certain electric field value(upper limit) after which it gets saturated. This is due to scattering at higher fields and mobility decreases.
+* Low values of Electricfield : Velocity is linear
+* High values of Electricfield : Velocity is saturated
+
+From the Device physicis point of view
+
+![](v27.jpg)
+
+![](v30.jpg)
+
+![](v31.jpg)
+
+We will now Re-derive Id
+
+![](v31.jpg)
+
+![](v32.jpg)
+
+The velocity saturation happens at higher values of Vgs
+
+![](v34.jpg)
+
+### L4 Velocity saturation drain current model
+Here we are considering large values of Vgs
+
+![](v35.jpg)
+
+* Let Vgs − Vt = Vgt
+
+For small values of Vds, we neglect (1+λVds) term
+
+![](v36.jpg)
+
+* Another technology parameter is **Vdsat** it defines at what value of voltage the device enter into velocity saturation
+  simply ,where velocity saturation begins.
+
+#### Cut-off Region Equation
+* Device is OFF i.e Id=0
+
+#### Saturation Region Equation
+* When Vgs-Vt i.e Vgt is minimum implies Vds is maximum
+
+![](v38.jpg)
+
+![](v39.jpg)
+
+#### Resistive Region Equation
+* When Vds is minimum i.e the lower values derive drain current Id 
+
+![](v41.jpg)
+
+#### Velocity Saturation Region Equation
+
+* When Vd sat is minimum
+
+![](v44.jpg)
+
+![](v45.jpg)
+
+
+In the above equation, it seems when W is constant and L is lowered then Id should increase, But it is not so practically.
+
+![](v46.jpg)
+
+**Observation :**
+
+The saturation current for lower nodes is low instead of being high. This is because Velocity saturation tends to saturate the device early.
+
+Hence,Velocity saturation limits peak current So, peak current of lower nodes is smaller than the higher nodes
 
 
 
