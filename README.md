@@ -1224,6 +1224,35 @@ The suitable ranges for Digital Design and Analog Design of CMOS VTC are
 ![](p21.jpg)
 
 
+### L5 Sky130 Noise margin labs
+
+Let us calculate Noise Margin through SPICE simulation
+
+Let us go to the Day 4 file
+
+![](day_4.jpeg)
+
+We are taking 
+* Wp/Wn = 2.77
+* Tuning/sweeping the Vin from 0 to 1.8V with stepsize of 0.01V
+
+![](day4_1.jpeg)
+
+Run the Simulation
+
+
+
+We will take the point where the slope is -1 ; 
+
+
+
+We get
+* VOH = 1.70141
+* VIH = 0.97479
+* VOL = 0.107042
+* VIL = 0.773109
+
+**High Noise margin NMH = VOH - VIH = 1.70141 - 0.97479 = 0.726**
 
 
 
