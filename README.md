@@ -918,7 +918,7 @@ Let us go to the Day 3 file
 
  Run the Simulation in oracle virtual box:
  ![](day3.png)
- ![](day3_zoomview.png)
+ ![](day3_zoom view.png)
 
 Switching Threyshold (Vm):  A point where Vin=Vout
 
