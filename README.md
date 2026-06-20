@@ -1442,6 +1442,22 @@ We can observe that
 * It shows that CMOS inverter still maintains its functionality irrespective of power supply device variations
 
 
+### L5 Sky130 device variations labs
+
+Let us go to the Day 5 device variation file.
+
+![](day_5.jpeg)
+
+Considering width of WP > WN.It is strong PMOS and weak NMOS.
+
+
+![](day_5_1.jpeg)
+Run the simulation
+
+
+
+**Observation :**
+* Vm shifts towards right
 
 
 
