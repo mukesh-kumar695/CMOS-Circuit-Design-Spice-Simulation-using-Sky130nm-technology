@@ -914,11 +914,11 @@ Let us go to the Day 3 file
 .The W/L ratio of PMOS is 2.33 times greater than NMOS.
 . Sweeping Vin from 0 to 1.8 with step size of 0.01V and plotting the Vout.
 
-![](day3.transient.png)
+![](day_3modeldescription.jpeg)
 
  Run the Simulation in oracle virtual box:
- ![](day3.png)
- ![](day3_zoom view.png)
+ ![](day3_jpeg)
+ ![](day3_3.jpeg)
 
 Switching Threyshold (Vm):  A point where Vin=Vout
 
@@ -937,7 +937,7 @@ Now let's go inside the Day 3 transient SPICE file.
 
 Run the Simulation by **plot out vs time in**
 
-![](day3_transient.png)
+![](day_3_2_transient.jpeg)
 
 We measure Delay at 50% of output curve (VDD) i.e 0.9V which is the switching voltage(Vm).
 
