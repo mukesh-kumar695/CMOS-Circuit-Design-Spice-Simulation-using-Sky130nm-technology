@@ -933,7 +933,7 @@ We get,
 
 Now let's go inside the Day 3 transient SPICE file.
 
-![](day3_transient.png)
+
 
 Run the Simulation by **plot out vs time in**
 
