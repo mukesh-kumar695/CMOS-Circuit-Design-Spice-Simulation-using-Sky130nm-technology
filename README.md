@@ -820,6 +820,93 @@ The range of Vin and Vout is 0V-2V.
 The slope gives high gain at the sharp transition region because any small change in Vin causes huge change in Vout
 
 
+# Day3-CMOS switching threshold and dynamic simulations
+
+## Voltage transfer characteristics-SPICE simulations
+
+### L1 SPICE deck creation for CMOS inverter
+
+Now let's simulate the VTC of CMOS inverter using a SPICE deck. It is a connectivity information (Netlist) which contains information about components of CMOS inverter, which defines:
+
+* Component Connectivity
+  
+Here,
+
+- M1 is PMOS
+- M2 is NMOS
+
+![](n2.jpg)
+  
+* Component values
+  
+Next, we define W/L ratios and voltage values. Equal sizing means balanced PMOS and NMOS strength.
+
+![](n5.jpg)
+
+* Identify Nodes
+  
+Then we identify nodes which are points where two components connect  to each other. SPICE runs simulations based on these nodes.
+
+![](n6.jpg)
+
+* Name Nodes
+  
+ Naming nodes ensures proper simulation which we can see them in model file 
+
+![](n7.jpg)
+
+Now let's write Spice deck
+
+SPICE syntax for MOSFET:
+
+* Drain Gate Source Body(substrate) (**DGSS**)
+
+![](n8.jpg)
+
+
+### L2 SPICE simulation for CMOS inverter
+
+![](n9.jpg)
+
+**Load Capacitance C_L**
+
+This can be a simple MOSFET or another CMOS inverter or a logic gate
+
+![](n10.jpg)
+
+To find the VTC,we will only be sweeping the input voltage and measuring the output voltage.
+
+* Sweep Vin from 0 → Vdd (2.5V) with step size 0.05.
+
+![](n13.jpg)
+
+
+**Model Files Library**
+
+All the information about the technological parameteres is inside the model files library.
+
+![](n14.jpg)
+
+Now Let's do the SPICE simulations to get VTC
+* For Wn/ln = Wp/Lp = 1.5
+
+![](n18.jpg)
+
+* For Wn/Ln=1.5, Wp/Lp=2.5 (PMOS width is 2.5 times more than NMOS)
+
+![](n19.jpg)
+
+![](n22.jpg)
+
+We observed that, when PMOS strength = NMOS Strength ,the previous graph has slightly shifted left side
+
+* Increasing PMOS width:
+
+ - Makes PMOS stronger
+ - Output stays high longer
+
+
+
 
 
 
