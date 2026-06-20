@@ -443,7 +443,14 @@ To analyze MOSFET behavior, we sweep Vgs and Vds.
 **Output:**
 * Id vs Vds curves for different Vg
 
+
 ![](day_1_output.jpeg)
+
+### L5 SPICE lab with Sky130 models
+
+![](day_1_allspice.jpeg)
+
+In all.spice file,we can see that W and L values are in microns
 
 
 
