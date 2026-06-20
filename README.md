@@ -931,7 +931,7 @@ We get,
 
 **Transient analysis :** Transient analysis defines how input and output changes with respect to time.
 
-Now let's go inside the Day 3 transient SPICE file.
+Now let's go inside the Day 3 transient SPICE file
 
 
 
