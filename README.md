@@ -631,10 +631,21 @@ The saturation current for lower nodes is low instead of being high. This is bec
 Hence,Velocity saturation limits peak current So, peak current of lower nodes is smaller than the higher nodes
 
 
+### L5 Labs Sky130 Id-Vgs
 
+ Let us do SPICE Simulation for lower nodes
 
-  
+**Id-Vds**
 
+Let us simulate drain characteristics
+ 
+ Now go to the Day 2 Vds file.
+
+![](day_2_output.jpeg)
+ The above graph is Id vs Vds for different values of Vgs. 
+
+* For low values of Vgs → Quadratic behaviour
+* For high values of Vgs → Linear behavior
 
 
 
