@@ -641,7 +641,7 @@ Let us simulate drain characteristics
  
  Now go to the Day 2 Vds file.
 
-![](day_1_output.jpeg)
+![](day_2_output.jpeg)
  The above graph is Id vs Vds for different values of Vgs. 
 
 * For low values of Vgs → Quadratic behaviour
