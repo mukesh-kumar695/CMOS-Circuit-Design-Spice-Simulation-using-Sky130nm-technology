@@ -82,7 +82,7 @@
 ###  How does SPICE help?
 SPICE simulations characterize CMOS circuits by extracting delay, slew, and power parameters used in timing analysis, clock tree synthesis, and cell library generation. These simulations generate delay lookup tables based on input slew and output load, enabling accurate physical design and STA.
 
-![Inverter circuit] (CMOS-1(30775193327552).jpg)
+![Inverter circuit] (./CMOS-1(30775193327552).jpg)
 
 The above inverter circuit has certain electrical characteristics.To understand its behaviour ,we perform SPICE simulations which help us analyze important parameters such as delay,switching behavior,and performance.Based on these results,we can determine the proper  W/L (width /Length) ratio of the transistors .
 
