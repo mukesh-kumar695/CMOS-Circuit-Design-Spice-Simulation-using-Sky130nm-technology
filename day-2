@@ -1,0 +1,381 @@
+-* ###  [Day 2 - Velocity Saturation and Basics of CMOS Inverter VTC](#day2-velocity-saturation-and-basics-of-cmos-inverter-vtc)
+  * #### [SPICE Simulation for Lower Nodes and Velocity Saturation Effect](#spice-simulation-for-lower-nodes-and-velocity-saturation-effect)
+    * [ ] [L1 SPICE simulation for lower nodes](#l1-spice-simulation-for-lower-nodes)
+    * [ ] [L2 Drain current vs gate voltage for long and short channel device](#l2-drain-current-vs-gate-voltage-for-long-and-short-channel-device)
+    * [ ] [L3 Velocity saturation at lower and higher electric fields](#l3-velocity-saturation-at-lower-and-higher-electric-fields)
+    * [ ] [L4 Velocity saturation drain current model](#l4-velocity-saturation-drain-current-model)
+    * [ ] [L5 Labs Sky130 Id-Vgs](#l5-labs-sky130-id-vgs)
+    * [ ] [L6 Labs Sky130 Vt](#l6-labs-sky130-vt)
+  * #### [CMOS Voltage Transfer Characteristics (VTC)](#cmos-voltage-transfer-characteristics-vtc)
+    * [ ] [L1 MOSFET as a switch](#l1-mosfet-as-a-switch)
+    * [ ] [L2 Introduction to standard MOS voltage current parameters](#l2-introduction-to-standard-mos-voltage-current-parameters)
+    * [ ] [L3 PMOS/NMOS drain current vs drain voltage](#l3-pmosnmos-drain-current-vs-drain-voltage)
+    * [ ] [L4 Step 1 - Convert PMOS gate-source-voltage to Vin](#l4-step1--convert-pmos-gate-source-voltage-to-vin)
+    * [ ] [L5 Step 2 & Step 3 - Convert PMOS and NMOS drain-source-voltage to Vout](#l5-step2--step3--convert-pmos-and-nmos-drain-source-voltage-to-vout)
+    * [ ] [L6 Step 4 - Merge PMOS-NMOS load curves and plot VTC](#l6-step4--merge-pmos-nmos-load-curves-and-plot-vtc)
+
+  
+# Day2-Velocity saturation and basics of CMOS inverter VTC
+
+## SPICE simulation for lower nodes and velocity saturation effect
+
+### L1 SPICE simulation for lower nodes
+
+We have observed the curve for Id vs Vds for different values of Vgs.
+
+![](v2.jpg)
+
+In the above graph:
+
+* Left side of curve (Vds = Vgs − Vt) → Linear region
+* Right side → Saturation region
+* Bottom → Cut-off region (Device OFF)
+  
+This behavior is for long channel devices.
+
+At certain transition point of Vds the region is not completely saturated nor completely linear
+
+This is how the Id equation maps the graphical curves
+
+Now, we take different values of W and L while keeping W/L constant. Ideally, we expect Id should remain the same, but practically, it does not obeys.
+
+Below is the SPICE deck where only W and L are changed and everything remians same
+
+![](v3.jpg)
+
+![](v4.jpg)
+
+![](v10.jpg)
+
+
+### L2 Drain current vs gate voltage for long and short channel device
+
+Plot Id at different values of Vgs and Vds
+
+![](v12.jpg)
+
+Let us compare the two simulations.
+
+![](v13.jpg)
+
+
+**Observations :**
+
+* For long channel devices :
+
+   At Vds = 2.5V , Id has quadratic dependency on Vgs 
+
+
+* For short channel devices :
+ 
+   For lower values of Vds,Id shows quadratic behaviour w.r.t Vgs .After certain point Vds=2.5V
+  
+   Id has shown linear behavior due to velocity saturation.
+
+
+For Long Channel Device (L = 1.2µm): 
+
+Now we plot Id vs Vgs graph seeping Vds to 2.5V with a step size of 2.5 i.e Vds=2.5 
+
+This syntax means the left-side parameter is swept/tuned for every value of the right-side parameter.
+
+![](v14.jpg)
+
+
+For short channel device (L = 0.25µm):
+
+![](v24.jpg)
+
+Any Device L<=0.25 is a short channel device
+
+
+### L3 Velocity saturation at lower and higher electric fields
+
+For Short Channel Devices,we will see more of a linear behaviour as the Vgs increases (Id vs Vgs). This is due to velocity saturation effect.
+
+![](v24.jpg)
+
+* Higher values of Vgs - Linear Function of Id
+* Lower values of Vgs - Quadratic Function of Id
+
+Velocity Saturation is one of the Short Channel Effect which becomes one of region for operating the lower nodes 
+
+![](v25.jpg)
+
+![](v26.jpg)
+
+For lower nodes,
+
+We have have 4 regions of operations: 
+* Cut Off
+* Linear
+* Saturation
+* Velocity Saturation
+  
+**Velocity Saturation :**
+
+ We know that velocity and electric field are related to each other 
+ * v=uE
+where,
+* v is velocity
+* E is electric field
+* u is mobility.
+
+Velocity increases linearly with electric field over certain electric field value(upper limit) after which it gets saturated. This is due to scattering at higher fields and mobility decreases.
+* Low values of Electricfield : Velocity is linear
+* High values of Electricfield : Velocity is saturated
+
+From the Device physicis point of view
+
+![](v27.jpg)
+
+![](v30.jpg)
+
+![](v31.jpg)
+
+We will now Re-derive Id
+
+![](v31.jpg)
+
+![](v32.jpg)
+
+The velocity saturation happens at higher values of Vgs
+
+![](v34.jpg)
+
+### L4 Velocity saturation drain current model
+Here we are considering large values of Vgs
+
+![](v35.jpg)
+
+* Let Vgs − Vt = Vgt
+
+For small values of Vds, we neglect (1+λVds) term
+
+![](v36.jpg)
+
+* Another technology parameter is **Vdsat** it defines at what value of voltage the device enter into velocity saturation
+  simply ,where velocity saturation begins.
+
+#### Cut-off Region Equation
+* Device is OFF i.e Id=0
+
+#### Saturation Region Equation
+* When Vgs-Vt i.e Vgt is minimum implies Vds is maximum
+
+![](v38.jpg)
+
+![](v39.jpg)
+
+#### Resistive Region Equation
+* When Vds is minimum i.e the lower values derive drain current Id 
+
+![](v41.jpg)
+
+#### Velocity Saturation Region Equation
+
+* When Vd sat is minimum
+
+![](v44.jpg)
+
+![](v45.jpg)
+
+
+In the above equation, it seems when W is constant and L is lowered then Id should increase, But it is not so practically.
+
+![](v46.jpg)
+
+**Observation :**
+
+The saturation current for lower nodes is low instead of being high. This is because Velocity saturation tends to saturate the device early.
+
+Hence,Velocity saturation limits peak current So, peak current of lower nodes is smaller than the higher nodes
+
+
+### L5 Labs Sky130 Id-Vgs
+
+ Let us do SPICE Simulation for lower nodes
+
+**Id-Vds**
+
+Let us simulate drain characteristics
+ 
+ Now go to the Day 2 Vds file.
+
+![](day_2_output.jpeg)
+ The above graph is Id vs Vds for different values of Vgs. 
+
+* For low values of Vgs → Quadratic behaviour
+* For high values of Vgs → Linear behavior
+
+## CMOS voltage transfer characteristics (VTC)
+
+### L1 MOSFET as a switch
+
+From the device point of view let us see how simple _MOSFET_ acts as _Switch_
+
+![](s3.jpg)
+
+![](s4.jpg)
+
+* PMOS -  on the top of CMOS   - source connected to VDD
+* NMOS - on the bottom of CMOS - source connected to VSS(ground)
+
+The Load Capacitor C_L at the drain can be connected as input to the next inverter it can de a wire,inverter or a logic gate
+
+Biasing of CMOS inverter
+
+* When |Vgs| < Vt → Device OFF (open switch)
+* When |Vgs| > Vt → Device ON (closed switch)
+
+Conditions for PMOS
+
+* _Vgs_p <-Vt : Turn ON_
+* _Vgs_p >-Vt : Turn OFF_
+
+Conditions for NMOS
+
+* _Vgs_n > +Vt : Turn ON_
+* _Vgs_n < +Vt : Turn OFF_
+
+### L2 Introduction to standard MOS voltage current parameters
+
+By varying the Boundary Conditions
+
+- At Vin = Vdd (high)
+- At Vin = 0 (low).
+  
+By using the  the  above conditions we will calculate  individual equivalent circuits and merge them to we can get Voltage Transfer Characteristics(VTC)
+
+Let Vdd= 5V 
+* When **Vin = Vdd**,then
+  - Vgs_n = 5 - 0 = 5V - NMOS ON  - acts as a closed switch
+  - Vgs_p = 5 - 5 = 0V - PMOS OFF - acts as a open switch
+
+![](s7.jpg)
+
+* When **Vin = 0**,then
+  - Vgs_n = 0 - 0 = 0V - NMOS ON  - acts as a closed switch
+  - Vgs_p = 0 - 5 = -5V - PMOS OFF - acts as a open switch
+
+![](s12.jpg)
+
+**Output Capacitor Behaviour**
+
+We can observe that when Vin=Vdd There is a direct path that exists between Vss and Vout, the capacitor C_L discharges through the resistor.
+Similarly when Vin=0 there is a direct path exists between Vdd and Vout, C_L charges.
+
+But the direction os current is not same
+
+
+![](s13.jpg)
+
+**Naming Convention**
+
+![](s15.jpg)
+
+
+**Observation**
+
+![](s16.jpg)
+
+
+### L3 PMOS/NMOS drain current vs drain voltage
+
+As the direction of current is reverse _Ids_p = -Ids_n_
+
+We applied the reverse potential to the PMOS 
+
+Now, we get the curve between Ids_n Vs Vds_n and Ids_p Vs Vds_p, it is as shown below.
+
+![](s18.jpg)
+
+Below are the steps to obtain VTC for static CMOS inverter
+
+
+### L4 Step1- Convert PMOS gate-source-voltage to Vin
+
+We have lot of terms of internal voltages like Vgs,Vds,Vgd..tec, but when we see in logic block point of view(user's perspective) .We can have only two voltages _Vin_ and _Vout_. The Internal node voltages are not visible because they can not be used in digital design.
+
+So we need to convert every node voltage into the function of this two voltages _Vin_ and _Vout_
+
+To get rid of this node voltages, we modify the load curves of NMOS and PMOS to calculate the VTC and eventually we get to know the delay.
+
+Let us assume that it is a long channel device with Vdd=2V
+
+#### Step 1
+
+The graph of PMOS in terms of Idsn and also the corresponding Vin value of Vgs_p is being plotted as shown in the below graph.
+
+_Ids_n = -Ids_p_
+
+We know that Vgs_p = Vin − Vdd
+
+             Vin = Vgs_p + Vdd
+
+
+![](s21.jpg)
+
+![](s22.jpg)
+
+
+### L5 Step2 & Step3- Convert PMOS and NMOS drain-source-voltage to Vout
+
+#### Step 2
+Now Let us convert Vds_p into the function of output voltage Vout. 
+
+We know Vds_p = Vout - Vdd
+
+        Vout = Vds_p + Vdd
+        
+ So to get Vout, there is a shift of Vdd towards left hand side.
+
+![](s23.jpg)
+
+**Observations :** 
+
+* When Vout = 2V ,we have Vds_p = 0V and Vdd = 2V (given), then the current is zero and capacitor at the output gets discharged. This is true only when PMOS is in combination with NMOS and forms a CMOS inverter.
+* When Vout = 0V, we have Vdsp = -2V and Vdd = 2V, so at every gate voltage of Vin we will see a finite current whenever Vout = 0V. As Vout=0V, the capacitor is completely discharged and we need to charge that, so that is the charging current required.
+
+Therefore ,the load curve for PMOS is
+
+![](s25.jpg)
+
+#### Step 3
+Now Let us try to get the "load curve" for NMOS transistor in terms of Vin and Vout
+
+We know that,
+
+NMOS relation is simple: Vgsn = Vin
+
+                         Vdsn = Vout
+
+![](s27.jpg)
+
+![](s28.jpg)
+
+![](s29.jpg)
+
+### L6 Step4- Merge PMOS-NMOS load curves and plot VTC
+
+We are now able to obtain the Voltage Transfer Characteristics (VTC) by merging the load curves of NMOS and PMOS for CMOS inverter.
+
+![](s30.jpg)
+
+For this ,we will superimpose both of the Load Curves and by joining the intersection points between NMOS and PMOS load curves gives VTC.
+
+![](s31.jpg)
+
+**Operating regions :**
+
+The range of Vin and Vout is 0V-2V.
+
+* At Vin = 0V, Vout = 2V → NMOS is Cut Off region,PMOS is in Linear region
+* At Vin = 0.5V, 1.5V < Vout < 2V → NMOS is in Saturation region,PMOS is in Linear region.
+* At Vin = 1V, 0.5V < Vout < 1.5V → NMOS and PMOS are in Saturation region.
+* At Vin = 1.5V, 0 < Vout <0.5V → NMOS is Linear region,PMOS is in Saturation region.
+* At Vin = 2V, Vout = 0V → NMOS is in linear region,PMOS is Cut Off
+
+![](VTC.png)
+
+The slope gives high gain at the sharp transition region because any small change in Vin causes huge change in Vout
