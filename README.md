@@ -79,12 +79,12 @@
 
  A CMOS circuit design has both PMOS and NMOS transistors are connected together in a specific different fashion to form logic gates such as NAND, NOR, AND, OR, etc. These basic gates are the building blocks of all digital circuits.A standard CMOS inverter is built using a PMOS connected to $V_{DD}$ and an NMOS connected to $V_{SS}$ driving a load capacitance ($C_L$).
  
-![Inverter Circuit](CMOS-1(30775193327552).jpg)
+![Inverter Circuit](image/CMOS-1(30775193327552).jpg)
 
 The above inverter circuit has certain electrical characteristics.To understand its behaviour ,we perform SPICE simulations which help us analyze important parameters such as delay,switching behavior,and performance.Based on these results,we can determine the proper  W/L (width /Length) ratio of the transistors .
 
 ### VTC Circuit and Waveform Plot
-![CMOS Inverter VTC Characteristics](CMOS-2(30775566694972).jpg)
+![CMOS Inverter VTC Characteristics](image/CMOS-2(30775566694972).jpg)
 
 * **Voltage Transfer Characteristics (VTC):** By plotting $V_{out}$ against $V_{in}$, we observe how the circuit switches b/w pmos and nmos. 
 * **Operating Regions:**
@@ -100,7 +100,7 @@ The above inverter circuit has certain electrical characteristics.To understand 
 SPICE (Simulation Program with Integrated Circuit Emphasis).Without SPICE, it would not be possible to calculate delays, and without delay information, 
 physical design and timing verification would not be meaningful.
 
-![Clock Network](CMOS-4(30775650902025).jpg)
+![Clock Network](image/CMOS-4(30775650902025).jpg)
 
  Suppose we perform CTS on a circuit using buffers that are connected with different capacitive loads at their outputs.
 By performing SPICE simulation ,we get a **Delay Table** for these buffer cells.
@@ -113,8 +113,8 @@ By performing SPICE simulation ,we get a **Delay Table** for these buffer cells.
 By mapping the input slew (e.g., $40ps$, $60ps$) against output load (e.g., $30fF$, $50fF$) in the lookup matrices, we can determine the precise delay value at their intersection point.
 This delay tables for the level 1 and level 2 buffers is a direct result of transistor-level circuit design and SPICE simulation.
 
- ![Delay Table](CMOS-5(30775710287972).jpg)
-![](CMOS-6(30775811277372).jpg)
+ ![Delay Table](image/CMOS-5(30775710287972).jpg)
+![](image/CMOS-6(30775811277372).jpg)
  
 Therefore, SPICE plays a fundamental role in CMOS circuit design, as it allows us to characterize and
 evaluate circuit performance accurately before implementation.
@@ -123,7 +123,7 @@ evaluate circuit performance accurately before implementation.
 An NMOS is a **4-terminal device** composed of a Gate (G), Source (S), Drain (D), and Body/Substrate (B) built over a P-substrate with $n^+$ diffusion regions(source and drain).
 
 Above the substrate, there is a thin oxide layer, and on top of it a metal layer is deposited, which acts as the Gate terminal.
-![]((30775901979921).jpg)
+![](image/(30775901979921).jpg)
 
 #### Threshold Voltage:
 Threshold voltage ($Vt$) is a very important parameter in MOSFET operation, all the characteristics of a device depends on this value.
@@ -134,14 +134,14 @@ Initially,
 *  Means source,drain and body terminals are grounded.
 *  P-substrate and n+ doped regions act as reverse-biased PN junction diode and as there is no potential so there is a high resistance. **No channel formation** is there.The device remains **Off**
 
-![](CMOS-10(30776008616005).jpg)
+![](image/CMOS-10(30776008616005).jpg)
   
 **Applying $+ve$ $V_{gs}>0$:**
 * Now positive charge on the gate repels holes or positive charge in substrate and starts attracting negative charges (electrons) below the gate oxide layer in the substrate.
 * This is beginning of the channel formation
 
-![](CMOS-11(30776084500038).jpg)
-![](CMOS-12(30776129719787).jpg)
+![](image/CMOS-11(30776084500038).jpg)
+![](image/CMOS-12(30776129719787).jpg)
 
 ### L3 Strong inversion and threshold voltage
 Due to the accumulation of negative charges,there will be formation of Depletion Region, depleting of substrates majority carriers i.e positive carriers here .
@@ -149,40 +149,40 @@ Due to the accumulation of negative charges,there will be formation of Depletion
   * More positive carriers are repelled
   * Increase of depletion region width
 
-![](CMOS-12(30776129719787).jpg)
+![](image/CMOS-12(30776129719787).jpg)
  
   * **Inversion Layer:** At some point, the semiconductor surface completely converts into an **n-type material** from p-type,this process is called **Strong or Surface inversion**.
   * The gate voltage at which the strong inversion happens is called the **Threshold Voltage**
 
-![](CMOS-13(30776190348334).jpg)
+![](image/CMOS-13(30776190348334).jpg)
 
 What will happen if we further increase Vgs>Vt?
 * As there are no more negative charges in the substrate that will be attracted towards the positive Vgs, The negative charges from n+ region will get attracted opening a conducting channel for current to flow from drain to source.
 * However,since there is no drain voltage,the current cannot flow from source to drain.
 
-![](CMOS-14(30776279997966).jpg)
+![](image/CMOS-14(30776279997966).jpg)
 
 Now let us observe what happens when we change the **body (substrate) potential**.
 
 The depletion region beteween the source and body increases due to the reverse bias at source terminal
 
-![](CMOS-15(30776344977812).jpg)
+![](image/CMOS-15(30776344977812).jpg)
 
 ### L4 Threshold voltage with positive substrate potential
 If we increase the Vgs,depletion region wil increase in both the cases. But in the second case as the +ve Vsb pulls few charges from channel will be pulled towards the source.
 * Results in slower inversion
 * Increases the value of threshold potential due to +ve Vsb
 
-![](CMOS-16(30776429513540).jpg)
+![](image/CMOS-16(30776429513540).jpg)
 
-![](CMOS-17(30776499522357).jpg)
+![](image/CMOS-17(30776499522357).jpg)
 
-![](CMOS-18(30776561651865).jpg)
+![](image/CMOS-18(30776561651865).jpg)
 
 
 The relation between threshold voltage and substrate bias is given by parameters such as Gamma (γ), which are obtained from the fabrication process.
 
-![](CMOS-19(30776633170989).jpg)
+![](image/CMOS-19(30776633170989).jpg)
 
 * **Conclusion(Body Effect):** When an additional reverse bias voltage ($V_{sb}$) is applied between the source and the body substrate, the depletion layer width broadens near the source, which directly increases the device's threshold voltage ($V_{th}$).
 
@@ -196,9 +196,9 @@ As the gate voltage (Vgs) increases:
 * The width of channel increases
 * More charge carriers are available for Conduction Channel Formation
 
-![](CMOS-21(30776790474539).jpg)
+![](image/CMOS-21(30776790474539).jpg)
 
-![](CMOS-22(30776846132191).jpg)
+![](image/CMOS-22(30776846132191).jpg)
 
  The induced charge in the channel is proportional to:
 
@@ -212,13 +212,13 @@ Vt = 0.45V
 
 Vgs is slightly greater than Vt and small initially 
 
-![](CMOS-23(30776913061288).jpg)
+![](image/CMOS-23(30776913061288).jpg)
 
 Since the source is grounded and drain is at some potential there will be formation of voltage gradient along the channel
 
 The Effective Channel Width is slightly smaller than the actual channel width due to some fabrication factors
 
-![](CMOS-24(30776987423290).jpg)
+![](image/CMOS-24(30776987423290).jpg)
 
  Here
  * y axis → the width of transistor
@@ -232,7 +232,7 @@ Example:
 * At x = 0 → Vgs - V(x) = 1V
 * At x = Vds → Vgs - V(x) = 0.95V
 
-![](sky-3(386973625413597).jpg)
+![](image/sky-3(386973625413597).jpg)
 
 The induced charge equation is proportional to the effective channel voltage and depends on the position x
 
@@ -244,11 +244,11 @@ Because of the potential difference across the channel there exists a drift curr
 
 Here, drift current dominates because of the electric field.
 
-![](sky-4(386973653148953).jpg)
+![](image/sky-4(386973653148953).jpg)
 
 To calculate drain current, we consider the top view of the transistor.
 
-![](sky-5(386973679111348).jpg)
+![](image/sky-5(386973679111348).jpg)
 
  ### L3 Drain current model for linear region of operation
 Since there is a voltage variation along the channel which results in variation in carrier velocity.
@@ -257,15 +257,15 @@ Velocity depends on the following factors:
 * Mobility (μ)
 * Electric field (E)
 
-![](sky-7(386973715675750).jpg)
+![](image/sky-7(386973715675750).jpg)
 
 By integrating the above equation where,
 * limits of dV will be from 0 to Vds.
 * limits of dx will be from 0 to L.
 
-![](sky-8(386973733585404).jpg)
+![](image/sky-8(386973733585404).jpg)
 
-![](sky-9(386973753458695).jpg)
+![](image/sky-9(386973753458695).jpg)
 
 Technology parameters:
 
@@ -275,7 +275,7 @@ Technology parameters:
 * Threshold voltage (Vt)
 These parametes are helpful in SPICE simulations to find out the characteristics.
 
- ![](sky-10(386973772798949).jpg)
+ ![](image/sky-10(386973772798949).jpg)
 
  But, here we cannot say that it is in Linear region, since the Drain current is the quadratic function of Vds. We will calculate the Id with the given values.
 
@@ -291,9 +291,9 @@ Condition for linear region:
 
 (Vgs - Vt) > Vds
 
-![](sky-11(386973790176363).jpg)
+![](image/sky-11(386973790176363).jpg)
 
-![](sky-12(386973828538815).jpg)
+![](image/sky-12(386973828538815).jpg)
 
 But calculating Id for different values of Vgs and sweeping Vds until (Vgs-Vt) at every value is complex
 So,to calculate Id for different values:
@@ -305,19 +305,19 @@ When Vds exceeds the value (Vgs-Vt) the region of operation is called "Saturatio
 
 * When Vgs-Vds > Vt, there will be a conducting channel.
 
-![](sky-17(386973910069199).jpg)
+![](image/sky-17(386973910069199).jpg)
   
 * When Vgs-Vds = Vt, At drain side,  Inversion has just happened as it is equal to Vt, so channel will start disappearing at drain side.This is the beginnig of the **Pinch-off**
 
-![](sky-20(386973965146073).jpg)
+![](image/sky-20(386973965146073).jpg)
 
-![](sky-23(386974024666750).jpg)
+![](image/sky-23(386974024666750).jpg)
 
-![](sky-25(386974063189743).jpg)
+![](image/sky-25(386974063189743).jpg)
 
 * When Vgs-Vds < Vt, the channel has disappeared at drain side.
 
-![](sky-24(386974047396548).jpg)
+![](image/sky-24(386974047396548).jpg)
 
 This region is called as "Saturation region".
 
@@ -325,15 +325,15 @@ This region is called as "Saturation region".
 At saturation region, the channel voltage is constant i.e 'Vgs-Vt', and the drain current will not depend on Vds.
 To get drain current equation in saturation region we will replace Vds as Vgs-Vt.
 
-![](x21.png)
+![](image/x21.png)
 
 According to the equation, the mosfet acts as perfect current source. But this is not true.
 * we can see that increasing Vds also increases the depletion region at the Drain which reduces the effective channel length
 * This causes slight increase in current (Resembles slight dependence of Vgs over Id )
 
-![](x22.png)
+![](image/x22.png)
 
-![](x23.png)
+![](image/x23.png)
 
 This effect is called as **Channel Length Modulation**
 
@@ -345,13 +345,13 @@ First, let us understand the SPICE simulation setup.
 
 **SPICE Setup**
 
-![](sky-27(386974101833700).jpg)
+![](image/sky-27(386974101833700).jpg)
 
 Some parameters are fixed and provided by the foundry. These are pre-defined and do not need to be calculated manually.
 
-![](sky-28(386974118249374).jpg)
+![](image/sky-28(386974118249374).jpg)
 
-![](sky-29(386974133925966).jpg)
+![](image/sky-29(386974133925966).jpg)
 
 By providing:
 
@@ -363,7 +363,7 @@ We can obtain device characteristics such as Id vs Vds for different Vgs values.
 
 **SPICE Netlist** is used to feed the MOSFET device into SPICE engine in specific manner by defining its equivalent circuit in SPICE for simulation.
 
-![](sky-32(386974184789352).jpg)
+![](image/sky-32(386974184789352).jpg)
 
 
 ### L2 Circuit Description in SPICE Syntax
@@ -373,7 +373,7 @@ To write a SPICE netlist, follow these steps:
 * Assign names to nodes
 * Write component connections
 
-![](sky-33(386974202624791).jpg)
+![](image/sky-33(386974202624791).jpg)
 
 A MOSFET has 4 terminals:
 
@@ -383,60 +383,60 @@ A MOSFET has 4 terminals:
 * Substrate
 It is written in the order: D G S B (DGSS format)
 The SPICE Syntax of a MOSFET underly b/w 4 terminals
-![](sky-34(386974220741196).jpg)
-![](sky-35(386974238402619).jpg)
-![](sky-36(386974257266820).jpg)
-![](sky-37(386974278015499).jpg)
-![](sky-38(386974294815899).jpg)
-![](sky-39(386974311765303).jpg)
-![](sky-40(386974335407732).jpg)
-![](sky-41(386974359259653).jpg)
+![](image/sky-34(386974220741196).jpg)
+![](image/sky-35(386974238402619).jpg)
+![](image/sky-36(386974257266820).jpg)
+![](image/sky-37(386974278015499).jpg)
+![](image/sky-38(386974294815899).jpg)
+![](image/sky-39(386974311765303).jpg)
+![](image/sky-40(386974335407732).jpg)
+![](image/sky-41(386974359259653).jpg)
 
 This represents a long-channel MOSFET.
 
 Similarly, SPICE syntax for a resistor underly b/w 2 terminals is:
 
-![](sky-42(386974370958253).jpg)
-![](sky-43(386974384667844).jpg)
-![](sky-44(386974398454968).jpg)
-![](sky-45(386974420193147).jpg)
+![](image/sky-42(386974370958253).jpg)
+![](image/sky-43(386974384667844).jpg)
+![](image/sky-44(386974398454968).jpg)
+![](image/sky-45(386974420193147).jpg)
 
 Similarly, SPICE syntax for a voltage source underly b/w 2 terminal is:
 
-![](sky-46(386974444587193).jpg)
-![](sky-47(386974462009678).jpg)
-![](sky-48(386974480144889).jpg)
-![](sky-49(386974505627060).jpg)
-![](sky-50(386974523962873).jpg)
-![](sky-51(386974542141209).jpg)
-![](sky-52(386974557448142).jpg)
+![](image/sky-46(386974444587193).jpg)
+![](image/sky-47(386974462009678).jpg)
+![](image/sky-48(386974480144889).jpg)
+![](image/sky-49(386974505627060).jpg)
+![](image/sky-50(386974523962873).jpg)
+![](image/sky-51(386974542141209).jpg)
+![](image/sky-52(386974557448142).jpg)
 
 ### L3 Define Technology Parameters
 Each MOSFET requires a model file containing technology parameters.Now we will look for model of this particular NMOS.By using the technology parameters in model file it is easy to model the NMOS. The models for the name NMOS will be found in file which has the attribute of the similar name.
 
-![](sky-53(386974572430679).jpg)
+![](image/sky-53(386974572430679).jpg)
 
 These parameters are defined inside model libraries.
 
-![](sky-54(386974588670374).jpg)
+![](image/sky-54(386974588670374).jpg)
 
 We include this packaged file in .mod file and call this file in the SPICE netlist.
 
-![](sky-55(386974609440467).jpg)
+![](image/sky-55(386974609440467).jpg)
 
-![](sky-56(386974630418326).jpg)
+![](image/sky-56(386974630418326).jpg)
 
 In SPICE, Lines starting with ** * ** represents the comments.
 
-![](sky-57(386974649025313).jpg)
+![](image/sky-57(386974649025313).jpg)
 
-![](sky-58(386974673603024).jpg)
+![](image/sky-58(386974673603024).jpg)
 
 To analyze MOSFET behavior, we sweep Vgs and Vds.
 
-![](sky-60(386974706706238).jpg)
+![](image/sky-60(386974706706238).jpg)
 
-![](sky-61(386974722335694).jpg)
+![](image/sky-61(386974722335694).jpg)
 
 
 
@@ -444,11 +444,11 @@ To analyze MOSFET behavior, we sweep Vgs and Vds.
 * Id vs Vds curves for different Vg
 
 
-![](day_1_output.jpeg)
+![](image/day_1_output.jpeg)
 
 ### L5 SPICE lab with Sky130 models
 
-![](day_1_allspice.jpeg)
+![](image/day_1_allspice.jpeg)
 
 In all.spice file,we can see that W and L values are in microns
 
@@ -462,7 +462,7 @@ In all.spice file,we can see that W and L values are in microns
 
 We have observed the curve for Id vs Vds for different values of Vgs.
 
-![](v2.jpg)
+![](image/v2.jpg)
 
 In the above graph:
 
@@ -480,22 +480,22 @@ Now, we take different values of W and L while keeping W/L constant. Ideally, we
 
 Below is the SPICE deck where only W and L are changed and everything remians same
 
-![](v3.jpg)
+![](image/v3.jpg)
 
-![](v4.jpg)
+![](image/v4.jpg)
 
-![](v10.jpg)
+![](image/v10.jpg)
 
 
 ### L2 Drain current vs gate voltage for long and short channel device
 
 Plot Id at different values of Vgs and Vds
 
-![](v12.jpg)
+![](image/v12.jpg)
 
 Let us compare the two simulations.
 
-![](v13.jpg)
+![](image/v13.jpg)
 
 
 **Observations :**
@@ -518,12 +518,12 @@ Now we plot Id vs Vgs graph seeping Vds to 2.5V with a step size of 2.5 i.e Vds=
 
 This syntax means the left-side parameter is swept/tuned for every value of the right-side parameter.
 
-![](v14.jpg)
+![](image/v14.jpg)
 
 
 For short channel device (L = 0.25µm):
 
-![](v24.jpg)
+![](image/v24.jpg)
 
 Any Device L<=0.25 is a short channel device
 
@@ -532,16 +532,16 @@ Any Device L<=0.25 is a short channel device
 
 For Short Channel Devices,we will see more of a linear behaviour as the Vgs increases (Id vs Vgs). This is due to velocity saturation effect.
 
-![](v24.jpg)
+![](image/v24.jpg)
 
 * Higher values of Vgs - Linear Function of Id
 * Lower values of Vgs - Quadratic Function of Id
 
 Velocity Saturation is one of the Short Channel Effect which becomes one of region for operating the lower nodes 
 
-![](v25.jpg)
+![](image/v25.jpg)
 
-![](v26.jpg)
+![](image/v26.jpg)
 
 For lower nodes,
 
@@ -566,32 +566,32 @@ Velocity increases linearly with electric field over certain electric field valu
 
 From the Device physicis point of view
 
-![](v27.jpg)
+![](image/v27.jpg)
 
-![](v30.jpg)
+![](image/v30.jpg)
 
-![](v31.jpg)
+![](image/v31.jpg)
 
 We will now Re-derive Id
 
-![](v31.jpg)
+![](image/v31.jpg)
 
-![](v32.jpg)
+![](image/v32.jpg)
 
 The velocity saturation happens at higher values of Vgs
 
-![](v34.jpg)
+![](image/v34.jpg)
 
 ### L4 Velocity saturation drain current model
 Here we are considering large values of Vgs
 
-![](v35.jpg)
+![](image/v35.jpg)
 
 * Let Vgs − Vt = Vgt
 
 For small values of Vds, we neglect (1+λVds) term
 
-![](v36.jpg)
+![](image/v36.jpg)
 
 * Another technology parameter is **Vdsat** it defines at what value of voltage the device enter into velocity saturation
   simply ,where velocity saturation begins.
@@ -602,27 +602,27 @@ For small values of Vds, we neglect (1+λVds) term
 #### Saturation Region Equation
 * When Vgs-Vt i.e Vgt is minimum implies Vds is maximum
 
-![](v38.jpg)
+![](image/v38.jpg)
 
-![](v39.jpg)
+![](image/v39.jpg)
 
 #### Resistive Region Equation
 * When Vds is minimum i.e the lower values derive drain current Id 
 
-![](v41.jpg)
+![](image/v41.jpg)
 
 #### Velocity Saturation Region Equation
 
 * When Vd sat is minimum
 
-![](v44.jpg)
+![](image/v44.jpg)
 
-![](v45.jpg)
+![](image/v45.jpg)
 
 
 In the above equation, it seems when W is constant and L is lowered then Id should increase, But it is not so practically.
 
-![](v46.jpg)
+![](image/v46.jpg)
 
 **Observation :**
 
@@ -641,7 +641,7 @@ Let us simulate drain characteristics
  
  Now go to the Day 2 Vds file.
 
-![](day_2_output.jpeg)
+![](image/day_2_output.jpeg)
  The above graph is Id vs Vds for different values of Vgs. 
 
 * For low values of Vgs → Quadratic behaviour
@@ -653,9 +653,9 @@ Let us simulate drain characteristics
 
 From the device point of view let us see how simple _MOSFET_ acts as _Switch_
 
-![](s3.jpg)
+![](image/s3.jpg)
 
-![](s4.jpg)
+![](image/s4.jpg)
 
 * PMOS -  on the top of CMOS   - source connected to VDD
 * NMOS - on the bottom of CMOS - source connected to VSS(ground)
@@ -691,13 +691,13 @@ Let Vdd= 5V
   - Vgs_n = 5 - 0 = 5V - NMOS ON  - acts as a closed switch
   - Vgs_p = 5 - 5 = 0V - PMOS OFF - acts as a open switch
 
-![](s7.jpg)
+![](image/s7.jpg)
 
 * When **Vin = 0**,then
   - Vgs_n = 0 - 0 = 0V - NMOS ON  - acts as a closed switch
   - Vgs_p = 0 - 5 = -5V - PMOS OFF - acts as a open switch
 
-![](s12.jpg)
+![](image/s12.jpg)
 
 **Output Capacitor Behaviour**
 
@@ -707,16 +707,16 @@ Similarly when Vin=0 there is a direct path exists between Vdd and Vout, C_L cha
 But the direction os current is not same
 
 
-![](s13.jpg)
+![](image/s13.jpg)
 
 **Naming Convention**
 
-![](s15.jpg)
+![](image/s15.jpg)
 
 
 **Observation**
 
-![](s16.jpg)
+![](image/s16.jpg)
 
 
 ### L3 PMOS/NMOS drain current vs drain voltage
@@ -727,7 +727,7 @@ We applied the reverse potential to the PMOS
 
 Now, we get the curve between Ids_n Vs Vds_n and Ids_p Vs Vds_p, it is as shown below.
 
-![](s18.jpg)
+![](image/s18.jpg)
 
 Below are the steps to obtain VTC for static CMOS inverter
 
@@ -753,9 +753,9 @@ We know that Vgs_p = Vin − Vdd
              Vin = Vgs_p + Vdd
 
 
-![](s21.jpg)
+![](image/s21.jpg)
 
-![](s22.jpg)
+![](image/s22.jpg)
 
 
 ### L5 Step2 & Step3- Convert PMOS and NMOS drain-source-voltage to Vout
@@ -769,7 +769,7 @@ We know Vds_p = Vout - Vdd
         
  So to get Vout, there is a shift of Vdd towards left hand side.
 
-![](s23.jpg)
+![](image/s23.jpg)
 
 **Observations :** 
 
@@ -778,7 +778,7 @@ We know Vds_p = Vout - Vdd
 
 Therefore ,the load curve for PMOS is
 
-![](s25.jpg)
+![](image/s25.jpg)
 
 #### Step 3
 Now Let us try to get the "load curve" for NMOS transistor in terms of Vin and Vout
@@ -789,21 +789,21 @@ NMOS relation is simple: Vgsn = Vin
 
                          Vdsn = Vout
 
-![](s27.jpg)
+![](image/s27.jpg)
 
-![](s28.jpg)
+![](image/s28.jpg)
 
-![](s29.jpg)
+![](image/s29.jpg)
 
 ### L6 Step4- Merge PMOS-NMOS load curves and plot VTC
 
 We are now able to obtain the Voltage Transfer Characteristics (VTC) by merging the load curves of NMOS and PMOS for CMOS inverter.
 
-![](s30.jpg)
+![](image/s30.jpg)
 
 For this ,we will superimpose both of the Load Curves and by joining the intersection points between NMOS and PMOS load curves gives VTC.
 
-![](s31.jpg)
+![](image/s31.jpg)
 
 **Operating regions :**
 
@@ -815,7 +815,7 @@ The range of Vin and Vout is 0V-2V.
 * At Vin = 1.5V, 0 < Vout <0.5V → NMOS is Linear region,PMOS is in Saturation region.
 * At Vin = 2V, Vout = 0V → NMOS is in linear region,PMOS is Cut Off
 
-![](VTC.png)
+![](image/VTC.png)
 
 The slope gives high gain at the sharp transition region because any small change in Vin causes huge change in Vout
 
@@ -835,25 +835,25 @@ Here,
 - M1 is PMOS
 - M2 is NMOS
 
-![](n2.jpg)
+![](image/n2.jpg)
   
 * Component values
   
 Next, we define W/L ratios and voltage values. Equal sizing means balanced PMOS and NMOS strength.
 
-![](n5.jpg)
+![](image/n5.jpg)
 
 * Identify Nodes
   
 Then we identify nodes which are points where two components connect  to each other. SPICE runs simulations based on these nodes.
 
-![](n6.jpg)
+![](image/n6.jpg)
 
 * Name Nodes
   
  Naming nodes ensures proper simulation which we can see them in model file 
 
-![](n7.jpg)
+![](image/n7.jpg)
 
 Now let's write Spice deck
 
@@ -861,42 +861,42 @@ SPICE syntax for MOSFET:
 
 * Drain Gate Source Body(substrate) (**DGSS**)
 
-![](n8.jpg)
+![](image/n8.jpg)
 
 
 ### L2 SPICE simulation for CMOS inverter
 
-![](n9.jpg)
+![](image/n9.jpg)
 
 **Load Capacitance C_L**
 
 This can be a simple MOSFET or another CMOS inverter or a logic gate
 
-![](n10.jpg)
+![](image/n10.jpg)
 
 To find the VTC,we will only be sweeping the input voltage and measuring the output voltage.
 
 * Sweep Vin from 0 → Vdd (2.5V) with step size 0.05.
 
-![](n13.jpg)
+![](image/n13.jpg)
 
 
 **Model Files Library**
 
 All the information about the technological parameteres is inside the model files library.
 
-![](n14.jpg)
+![](image/n14.jpg)
 
 Now Let's do the SPICE simulations to get VTC
 * For Wn/ln = Wp/Lp = 1.5
 
-![](n18.jpg)
+![](image/n18.jpg)
 
 * For Wn/Ln=1.5, Wp/Lp=2.5 (PMOS width is 2.5 times more than NMOS)
 
-![](n19.jpg)
+![](image/n19.jpg)
 
-![](n22.jpg)
+![](image/n22.jpg)
 
 We observed that, when PMOS strength = NMOS Strength ,the previous graph has slightly shifted left side
 
@@ -914,11 +914,11 @@ Let us go to the Day 3 file
 .The W/L ratio of PMOS is 2.33 times greater than NMOS.
 . Sweeping Vin from 0 to 1.8 with step size of 0.01V and plotting the Vout.
 
-![](day_3modeldescription.jpeg)
+![](image/day_3modeldescription.jpeg)
 
  Run the Simulation in oracle virtual box:
- ![](day3_jpeg)
- ![](day3_3.jpeg)
+ ![](image/day3_jpeg)
+ ![](image/day3_3.jpeg)
 
 Switching Threyshold (Vm):  A point where Vin=Vout
 
@@ -937,7 +937,7 @@ Now let's go inside the Day 3 transient SPICE file
 
 Run the Simulation by **plot out vs time in**
 
-![](day_3_2_transient.jpeg)
+![](image/day_3_2_transient.jpeg)
 
 We measure Delay at 50% of output curve (VDD) i.e 0.9V which is the switching voltage(Vm).
 
@@ -961,38 +961,38 @@ We measure Delay at 50% of output curve (VDD) i.e 0.9V which is the switching vo
 
 CMOS logic can be used in the logic gate designing and CMOS inveretes is a robust device.Let us understand it
 
-![](a2.jpg)
+![](image/a2.jpg)
 
 Now Let us compare the two different CMOS inverters with different W/L ratios of PMOS and NMOS,we can observe that 
 * Shape of the VTC is same
 * Switching threshold is different which shows the robustnesss of CMOS inverter.
 
-![](a4.jpg)
+![](image/a4.jpg)
 
 We can find the Switching threshold(Vm) in both the cases by drawing a 45 degree line.
 * At Vin = 0 and Vout = Vdd vice versa No current flows in CMOS inverter
 * At Vin = Vout = Vm the maximum current flows in CMOS inverter and it enters into Saturation
 
-![](a6.jpg)
+![](image/a6.jpg)
 
 At this particular operating region Vm, 
 * _Vgs>>Vt_
 * There is a posibility of leakage current as the current flows directly from _Power to Load_
 
-  ![](a7.jpg)
+  ![](image/a7.jpg)
 
 ### L2 Analytical expression of Vm as a function of (W/L)n and (W/L)p
 Let us now calculate the value of Switching Voltage (Vm)  w.r.t the width and lengths of NMOS and PMOS.
 
 Ignore the value of Vt as Vgs is far greater
 
-![](a8.jpg)
+![](image/a8.jpg)
 
-![](a9.jpg)
+![](image/a9.jpg)
 
-![](a10.jpg)
+![](image/a10.jpg)
 
-![](a13.jpg)
+![](image/a13.jpg)
 
 The values kp',Vdsat and W/L etc.. are in model files
 
@@ -1011,20 +1011,20 @@ We need to choose W/L such that **Vm ≈ Vdd/2** in which CMOS acts as a symmetr
 
 From Current Equation **_Idsn=-Idsp_**
 
-![](a.16jpg)
+![](image/a.16jpg)
 
-![](a17.jpg)
+![](image/a17.jpg)
 
-![](a18.jpg)
+![](image/a18.jpg)
 
-![](a19.jpg)
+![](image/a19.jpg)
 
-![](a20.jpg)
+![](image/a20.jpg)
 
 Now ,we can find W/L ratios if we know Vm. This will allow us to find out for what value of W/L ratio of PMOS will be greater than NMOS based on
  values of Vm.
 
-![](a22.jpg)
+![](image/a22.jpg)
 
 ### L4 Static and Dynamic simulation of CMOS inverter
 
@@ -1032,33 +1032,33 @@ Now let us caluculate the Vm for different widths of PMOS and observe the CMOS b
 
 * For (W/L)n = (W/L)p = 1.5
 
-![](a22.jpg)
+![](image/a22.jpg)
 
  -  _Static Simulation → VTC curve_
  -  _Dynamic Simulation → Delay behavior_
 
 By doing Transient Analysis, we can calculate the Rise Delay and Fall Delay just like before
 
-![](a35.jpg)
+![](image/a35.jpg)
 
 
 ### L5 Static and Dynamic simulation of CMOS inverter with increased PMOS width
 
 * (W/L)p = 2(W/L)n
 
-![](a42.jpg)
+![](image/a42.jpg)
 
 * (W/L)p = 3(W/L)n
 
-![](a43.jpg)
+![](image/a43.jpg)
 
 * (W/L)p = 4(W/L)n
 
-![](a44.jpg)
+![](image/a44.jpg)
 
 * (W/L)p = 5(W/L)n
 
-![](a45.jpg)
+![](image/a45.jpg)
 
 **Observation:**
  - As the PMOS width increases ,the rise delay significantly decreases and Vm increases eventually
@@ -1071,7 +1071,7 @@ By doing Transient Analysis, we can calculate the Rise Delay and Fall Delay just
 ### L6 Applications of CMOS inverter in clock network and STA
 From the above experiments,we get
 
-![](a46.jpg)
+![](image/a46.jpg)
 
 **Conclusions :**
 
@@ -1087,12 +1087,12 @@ From the above experiments,we get
 
 If we set Vm, from 1.2V to 1.3V then we will get a inverter which has symmetry of particular cell. 
 
-![](a47.jpg)
+![](image/a47.jpg)
 
 This is a typical characteristic of Clock Inverter/buffer where we want the rise delay and fall delay to be equal.
 But in this case Rise Delay and Fall Delay are not equal 
 
-![](a48.jpg)
+![](image/a48.jpg)
 
 We design an inverter for which Rise Delay and Fall Delay are equal
 
@@ -1101,9 +1101,9 @@ where ,
   
 The other types of PMOS widths will be used according to the data path requirement
 
-![](a50.jpg)
+![](image/a50.jpg)
 
-![](a51.jpg)
+![](image/a51.jpg)
 
 * Saved Area
 * Reduced delays for datapath
@@ -1123,7 +1123,7 @@ Let us discuss the CMOS robustness towards Noise Margin
   
 We observe that the output instantly switchines from higher voltage to lower voltage (VDD to 0) at VDD/2 and the slope is infinite
   
-![](p4.jpg)
+![](image/p4.jpg)
 
 * **Actual Inverter**
   
@@ -1131,9 +1131,9 @@ In practical, Due to presence of resistances and capacitances of a CMOS inverter
 
 slope = -1
 
-![](p5.jpg)
+![](image/p5.jpg)
 
-![](p7.jpg)
+![](image/p7.jpg)
 
 * VIL - Low Input Voltage
   - Any input voltage level between 0 and VIL  will be treated as logic 0
@@ -1147,7 +1147,7 @@ slope = -1
 ### L2 Noise Margin voltage paramters
 Let's see more practical case,
 
-![](p10.jpg)
+![](image/p10.jpg)
 
 * When the 0<Vin<VIL --> output is VOH<Vout<Vdd ;
 * When the input is VOL<Vin<Vdd --> output is 0<Vout<VOL
@@ -1171,11 +1171,11 @@ Observation:
 ### L3 Noise margin equation and summary
 Plot the Voltages on a scale from 0 to VDD
 
-![](p11.jpg)
+![](image/p11.jpg)
 
 Let us calculate the Noise Margin equation 
 
-![](p12.jpg)
+![](image/p12.jpg)
 
 These are the tolerable levels of noise
 
@@ -1184,7 +1184,7 @@ These are the tolerable levels of noise
 
 In the Undefined region,the output logic level can swing between 'high' and 'low' which is a metastate.
 
-![](p13.jpg)
+![](image/p13.jpg)
 
 Bumps in the tolerable region won't harm the output of a circuit.
 
@@ -1201,27 +1201,27 @@ For wide range of noises,we consider
 * Find the points where slope = -1
 * calculate NMH and NML
 
-![](p14.jpg)
+![](image/p14.jpg)
 
-![](p15.jpg)
+![](image/p15.jpg)
 
-![](p16.jpg)
+![](image/p16.jpg)
 
-![](p17.jpg)
+![](image/p17.jpg)
 
-![](p18.jpg)
+![](image*p18.jpg)
 
 PMOS width is responsible for getting capacitance charged which creates low resistance path as a result of it is able to hold charges for longtime
 
-![](p19.jpg)
+![](image/p19.jpg)
 
 Due to fabrication imperfections ,Wp is not exactly equal to the x.Wn ,but CMOS Noise margin won't affect as we observe that NMH increases to certain point w.r.t PMOS width i.e 0.3 to 0.42 and then it doen't change then.This shows the CMOS Robustness towards Noise Margin
 
 The suitable ranges for Digital Design and Analog Design of CMOS VTC are
 
-![](p20.jpg)
+![](image/p20.jpg)
 
-![](p21.jpg)
+![](image/p21.jpg)
 
 
 ### L5 Sky130 Noise margin labs
@@ -1230,13 +1230,13 @@ Let us calculate Noise Margin through SPICE simulation
 
 Let us go to the Day 4 file
 
-![](day_4.jpeg)
+![](image/day_4.jpeg)
 
 We are taking 
 * Wp/Wn = 2.77
 * Tuning/sweeping the Vin from 0 to 1.8V with stepsize of 0.01V
 
-![](day4_1.jpeg)
+![](image/day4_1.jpeg)
 
 Run the Simulation
 
@@ -1273,17 +1273,17 @@ When gate length scales reduced:
 
 Let us observe this Power supply scaling by following simulations
 
-![](y1.jpg)
+![](image/y1.jpg)
 
 Let us check whether CMOS inverter characteristics remain stable under different VDD values.
 
-![](y2.jpg)
+![](image/y2.jpg)
 
-![](y3.jpg)
+![](image/y3.jpg)
 
 We can see that as VDD decreases,Output swing reduces and Transition becomes slower which reduced the gain
 
-![](y5.jpg)
+![](image/y5.jpg)
 
 ### L2 Advantages and disadvantages using low supply voltage
 
@@ -1293,62 +1293,62 @@ Let us observe the **Gain factor** for the above waveform
 
      = dVout/dVin
 
-![](y8.jpg)
+![](image/y8.jpg)
 
-![](y9.jpg)
+![](image/y9.jpg)
 
 We get
 * For High VDD → Higher gain
 * For Low VDD → Reduced gain
 
-![](y11.jpg)
+![](image/y11.jpg)
 
 Energy efficiency is improved
 
 Power Consumpution has decreased with the value of VDD and the disadvantages of low supply voltage Due to low supply voltage, the charging and discharging of load capacitor becomes very slow, due to this the Both rise delay and fall delay will increase and lead to a performance impact.
 
-![](y13.jpg)
+![](image/y13.jpg)
 
-![](y14.jpg)
+![](image/y14.jpg)
 
-![](y15.jpg)
+![](image/y15.jpg)
 
-![](y16.jpg)
+![](image/y16.jpg)
 
-![](y17.jpg)
+![](image/y17.jpg)
 
-![](y18.jpg)
+![](image/y18.jpg)
 
-![](y19.jpg)
+![](image/y19.jpg)
 
-![](y20.jpg)
+![](image/y20.jpg)
 
 The advantages and disadvantages are
 
-![](y21.jpg)
+![](image/y21.jpg)
 
 
 ### L3 Sky130 Supply variation Labs
 
 Let us go to the Day 5 supply variation file.
 
-![](y22.jpg)
+![](image/y22.jpg)
 
 The initial supply voltage is 1.8V and we are reducing it with the step of 0.2V, so there will be 6 iterations.
 
-![](y23.jpg)
+![](image/y23.jpg)
 
 Run the simulation
 
-![](y24.jpg)
+![](image/y24.jpg)
 
-![](y25.jpg)
+![](image/y25.jpg)
 
 Now let us calculate the gain
 
 * Vdd=1.8V
 
-![](y25.jpg)
+![](image/y25.jpg)
 
 |dy| =| 0.112676 - 1.69014| = 1.577464
 |dx| = |0.976068 - 0.774359| = 0.201709
@@ -1364,26 +1364,26 @@ Let us discuss about the Sources of Variation
 * Etching Process
 * Oxide Thickness
 
-![](y27.jpg)
+![](image/y27.jpg)
 
 **Etching Process :** In a single inverter layout, we will see the length of gate, the width(common area between polysilicon and diffusion).
 
 There will be a variation in gate length and gate width of CMOS due to the inacuraccies in the Etching Process
 
-![](y28.jpg)
+![](image/y28.jpg)
 
 In the inverter chain, the variation can vary with different inverter like with respect to the position of inverter as shown in the diagrams.
 
-![](y29.jpg)
+![](image/y29.jpg)
 
-![](y30.jpg)
+![](image/y30.jpg)
 
-![](y33.jpg)
+![](image/y33.jpg)
 
 * Edges - More Variation
 * Center -less Variation
 
-![](y35.jpg)
+![](image/y35.jpg)
 
 Hence,the change in w and L can change the drain current of CMOS inverter.
 
@@ -1392,40 +1392,40 @@ Hence,the change in w and L can change the drain current of CMOS inverter.
 
 **Oxide Thickness :** If we see the cross-sectional area of CMOS inverter, we can observe the oxide under polysilicon gate.During the fabrication oxide thickness may vary.
 
-![](y37.jpg)
+![](image/y37.jpg)
 
-![](y38.jpg)
+![](image/y38.jpg)
 
 Observe the ideal thickness and actual thickness.
 
-![](y40.jpg)
+![](image/y40.jpg)
 
-![](y41.jpg)
+![](image/y41.jpg)
 
 * **Cox=Eox/Tox**
 * The change in Tox can change the drain current (from equation) which leads to change in characterisitcs of CMOS inverter.
 
-![](y43.jpg)
+![](image/y43.jpg)
 
 ### L3 Smart SPICE simulation for device variations
 
-![](y44.jpg)
+![](image/y44.jpg)
 
 For device variations, let us simulate two extreme conditions.
 * For strong PMOS and week NMOS : PMOS width is wider and it has least resistance, NMOS has high resistance
 * For weak PMOS and strong PMOS : NMOS width is wider and it has least resistance, PMOS has high resistance
 
-![](y45.jpg)
+![](image/y45.jpg)
 
-![](y46.jpg)
+![](image/y46.jpg)
 
-![](y47.jpg)
+![](image/y47.jpg)
 
 ### L4 Conclusion
 
-![](y48.jpg)
+![](image/y48.jpg)
 
-![](y49.jpg)
+![](image/y49.jpg)
 
 We can observe that
 
@@ -1446,12 +1446,12 @@ We can observe that
 
 Let us go to the Day 5 device variation file.
 
-![](day_5.jpeg)
+![](image/day_5.jpeg)
 
 Considering width of WP > WN.It is strong PMOS and weak NMOS.
 
 
-![](day_5_1.jpeg)
+![](image/day_5_1.jpeg)
 Run the simulation
 
 
